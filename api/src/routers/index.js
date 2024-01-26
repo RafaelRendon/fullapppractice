@@ -1,5 +1,5 @@
 const { Router } = require("express");
-const Task = require("../models/config");
+const Task = require("../models");
 
 const route = Router();
 
@@ -8,7 +8,19 @@ route.get("/", async (req, res) => {
   res.status(200).json({ tasks });
 });
 
-route.post("/", (req, res) => {});
+// en el create deberia tener un middleware que valide que el body traiga la info osea que este lleno
+// linea de prueba para revisar si git funciona
+route.post("/", async (req, res) => {
+  const { task } = req.body;
+  const newTask = {
+    task,
+    status: false,
+  };
+  const taskDb = new Task(newTask);
+  await taskDb.save();
+
+  res.status(201).json({ message: "Tarea creada" });
+});
 
 route.put("/", (req, res) => {});
 
