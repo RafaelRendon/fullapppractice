@@ -9,7 +9,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon src/routers/index.js"
+    "start": "nodemon src/index.js"
   },
   "keywords": [],
   "author": "",
